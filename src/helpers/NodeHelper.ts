@@ -138,7 +138,7 @@ export class NodeHelper {
 
   /**
    * 403 errors are not caught by fetch so we check response.status, too
-   * this func returns a workingURL string or false;
+   * this func returns a workingURL string or ;
    */
   static checkNodeStatus = async (url: string) => {
     let liveURL;
