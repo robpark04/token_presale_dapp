@@ -71,7 +71,7 @@ function Presale() {
     return state.app.isPresaleOpen;
   });
   if (!isLoad && busdBalance && (Number(busdBalance) - Number(minbusdBalance) < 0)) {
-    dispatch(info("You didn’t got enough $USDT."));
+    dispatch(info("You don't have enough USDC. The minimum amount is $500."));
     isLoad = true;
   }
   const setMax = () => {
