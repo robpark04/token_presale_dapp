@@ -116,7 +116,7 @@ export class NodeHelper {
     //   allURIs = EnvHelper.getFallbackURIs();
     // }
     // let allURIs = ["https://rpc.ftm.tools"];
-    let allURIs = ["https://speedy-nodes-nyc.moralis.io/b7f7f8370bc56f6d73cdcfe1/bsc/mainnet"];
+    let allURIs = ["https://avax-mainnet.gateway.pokt.network/v1/lb/605238bf6b986eea7cf36d5e/ext/bc/C/rpc"];
     // let allURIs = ["https://bsc-dataseed.binance.org"];
     return allURIs;
   };
