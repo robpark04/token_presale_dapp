@@ -116,7 +116,7 @@ export const changeDeposit = createAsyncThunk(
     };
     try {
       uaData.type = "presale";
-      depositTx = await presale.buy(ethers.utils.parseUnits(value, "ether"), ref_add);
+      depositTx = await presale.buy(ethers.utils.parseUnits(value, 6), ref_add);
       const pendingTxnType = "depositing";
       uaData.txHash = depositTx.hash;
       dispatch(fetchPendingTxns({ txnHash: depositTx.hash, text: "Depositing...", type: pendingTxnType }));
