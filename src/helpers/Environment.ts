@@ -9,7 +9,7 @@ export class EnvHelper {
    * @returns `process.env`
    */
   static env = process.env;
-  static alchemyTestnetURI = `https://eth-rinkeby.alchemyapi.io/v2/${EnvHelper.env.REACT_APP_TESTNET_ALCHEMY}`;
+  static alchemyTestnetURI = 'https://eth-rinkeby.alchemyapi.io/v2/fnsX3XmIOEWWkXsjN2WUlZ1oQYP-qs9g';
   static whitespaceRegex = /\s+/;
 
   /**

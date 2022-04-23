@@ -23,16 +23,18 @@ export const loadAppDetails = createAsyncThunk(
     );
     const bhdContract = new ethers.Contract(addresses[networkID].TOKEN_ADDRESS as string, ierc20Abi, provider);
     const tokenBalance = await bhdContract.balanceOf(addresses[networkID].PRESALE_ADDRESS);
-    const totalTokenAmount = ethers.utils.formatEther(tokenBalance);
+    const totalTokenAmount = ethers.utils.formatUnits(tokenBalance, 6);
+
     console.log("debug tokenbalance", tokenBalance, typeof(tokenBalance));
     const isPresaleOpen = await presaleContract.isPresaleOpen();
     const maxBusdLimit = await presaleContract.maxBusdLimit();
     let minBusdLimit = await presaleContract.minBusdLimit();
     minBusdLimit = ethers.utils.formatEther(minBusdLimit);
     const rate = await presaleContract.rate();
-    const price = 1000000000000000000 / rate;
+    const price = 1000000 / rate;
+    console.log("price", price);
     const totalTokenAmountToDistribute = await presaleContract.totalpTokenAmountToDistribute();
-
+    console.log("totalTokenAmountToDistribute", totalTokenAmountToDistribute);
     return {
       isPresaleOpen,
       maxBusdLimit,

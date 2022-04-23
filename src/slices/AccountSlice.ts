@@ -73,20 +73,20 @@ export const loadAccountDetails = createAsyncThunk(
     }
     return {
       balances: {
-        busd: ethers.utils.formatEther(busdBalance),
-        bhd: ethers.utils.formatUnits(bhdBalance, "gwei"),
+        busd: ethers.utils.formatUnits (busdBalance, 6),
+        bhd: ethers.utils.formatUnits(bhdBalance, 6),
       },
       presale: {
         presaleAllowance: +presaleAllowance,
       },
       claim: {
         claimAllowance: +claimAllowance,
-        claimableAmount: ethers.utils.formatEther(claimableAmount),
-        totalPurchasedAmount: ethers.utils.formatEther(totalPurchasedAmount),
-        claimedAmount: ethers.utils.formatEther(claimedAmount),
+        claimableAmount: ethers.utils.formatUnits(claimableAmount, 6),
+        totalPurchasedAmount: ethers.utils.formatUnits(totalPurchasedAmount, 6),
+        claimedAmount: ethers.utils.formatUnits(claimedAmount, 6),
       },
       referral: {
-        paidReferral: ethers.utils.formatEther(paidReferral)
+        paidReferral: ethers.utils.formatUnits(paidReferral, 6)
       }
     };
   },

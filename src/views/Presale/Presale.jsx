@@ -83,9 +83,10 @@ function Presale() {
   const presaleAllowance = useSelector(state => {
     return state.account.presale && state.account.presale.presaleAllowance;
   });
-  const tokenBought = totalTokenAmountToDistribute / 1000000000000000000;
-  // console.log('debug', tokenBought)
-  const tokensRemain = tokenAmount - tokenBought;
+  const tokenBought = totalTokenAmountToDistribute / 1000000;
+  console.log('debug', tokenAmount)
+  const tokensRemain = tokenAmount;
+  console.log('debug', tokensRemain)
   const onChangeDeposit = async action => {
     // eslint-disable-next-line no-restricted-globals
     if (isNaN(quantity) || quantity === 0 || quantity === "") {
@@ -94,9 +95,10 @@ function Presale() {
     }
 
     // 1st catch if quantity > balance
-    let gweiValue = ethers.utils.parseUnits(quantity, "ether");
+    let gweiValue = ethers.utils.parseUnits(quantity, 6);
 
-    if (action === "presale" && gweiValue.gt(ethers.utils.parseUnits(busdBalance, "ether"))) {
+    console.log(quantity, busdBalance);
+    if (action === "presale" && gweiValue.gt(ethers.utils.parseUnits(busdBalance, 6))) {
       return dispatch(error("You cannot deposit more than your USDT balance."));
     }
     await dispatch(changeDeposit({ address, action, value: quantity.toString(), ref_add, provider, networkID: chainID }));
@@ -132,11 +134,11 @@ function Presale() {
             <Grid item>
               <div className="stake-top-metrics data-row-centered" style={{marginBottom: "18px"}}>
                 <Typography className="presale-items">Tokens bought:</Typography>
-                <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#adc6ff"}}>{tokenBought.toFixed(3)} $BATTLE</span></Typography>
+                <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#adc6ff"}}>{tokenBought} $PToken</span></Typography>
               </div>
               <div className="stake-top-metrics data-row-centered" style={{marginBottom: "18px"}}>
                 <Typography className="presale-items">Tokens left:</Typography>
-                <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#adc6ff"}}>{tokensRemain.toFixed(3)} $BATTLE</span></Typography>
+                <Typography className="presale-items" style={{marginLeft: "16px"}}><span style={{color: "#adc6ff"}}>{tokensRemain} $PToken</span></Typography>
               </div>
             </Grid>
           }
@@ -192,8 +194,8 @@ function Presale() {
                   <>
                     {/* <Grid item xs={12} sm={2} md={2} lg={2} /> */}
                     <Box alignItems="center" justifyContent="center" flexDirection="column" display="flex">
-                      <Typography style={{marginTop: "16px"}}>1 $BATTLE = 0.01 $USDT</Typography>
-                      <Typography style={{marginTop: "16px"}}>Enter Amount in $USDT</Typography>
+                      <Typography style={{marginTop: "16px"}}>1 $PToken = 5 $USDC</Typography>
+                      <Typography style={{marginTop: "16px"}}>Enter Amount in $USDC</Typography>
                       <Button
                         className="stake-button"
                         variant="contained"
